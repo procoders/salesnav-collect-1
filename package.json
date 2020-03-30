@@ -17,6 +17,7 @@
     "cypress-plugin-retries": "^1.5.2",
     "cypress-promise": "^1.1.0",
     "cypress-wait-until": "^1.6.1",
+    "minimist": ">=1.2.2",
     "papaparse": "^5.1.1",
     "parse": "^2.11.0"
   },
