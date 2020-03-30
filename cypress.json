@@ -1,0 +1,13 @@
+{
+    "viewportWidth": 1600,
+    "viewportHeight": 1040,
+    "env": {
+        "RETRIES": 120
+    },
+    "firefoxGcInterval": 2,
+    "execTimeout": 10000,
+    "taskTimeout": 10000,
+    "defaultCommandTimeout": 10000,
+    "pageLoadTimeout": 20000,
+    "responseTimeout": 10000
+}

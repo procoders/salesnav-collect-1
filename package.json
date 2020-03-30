@@ -1,0 +1,24 @@
+{
+  "name": "salesnav-collect-1",
+  "version": "1.0.0",
+  "description": "Automation for getting mutual connections DB from LinkedIn Sales Navigator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",
+    "build-list": "./node_modules/.bin/cypress run --browser=chrome --headless -s cypress/integration/salesnav/build_list.spec.js",
+    "mutuals": "./node_modules/.bin/cypress run --browser=chrome --headless -s cypress/integration/salesnav/mutual_collect.spec.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^4.1.0",
+    "cypress-log-to-output": "^1.0.8",
+    "cypress-plugin-retries": "^1.5.2",
+    "cypress-promise": "^1.1.0",
+    "cypress-wait-until": "^1.6.1",
+    "papaparse": "^5.1.1",
+    "parse": "^2.11.0"
+  },
+  "dependencies": {}
+}
