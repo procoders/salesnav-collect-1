@@ -1,6 +1,6 @@
 {
   "name": "salesnav-collect-1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Automation for getting mutual connections DB from LinkedIn Sales Navigator",
   "main": "index.js",
   "scripts": {

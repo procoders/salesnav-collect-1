@@ -101,85 +101,125 @@ describe("Build filter links", function() {
                       "/sales"
                     );
 
-                    cy.get("body")
-                      .then($body =>
+                    cy.get("body").then($body => {
+                      cy.get(".header-wrapper").click();
+
+                      if (
                         $body.find(
                           ".right div.company-topcard-actions div.save-to-list-dropdown button"
-                        )
-                      )
-                      .then($el => {
-                        if ($el.length === 0) {
-                          console.log(
-                            "Already saved. Cannot save " +
-                              company["Organization Name"]
-                          );
-
-                          saveToState();
-                          return;
-                        }
-
-                        cy.get(".header-wrapper").click();
-
-                        // artdeco-dropdown__content-inner
-                        cy.get(
-                          ".right div.company-topcard-actions div.save-to-list-dropdown"
-                        ).click({ force: true });
-                        cy.get(
-                          ".right div.company-topcard-actions div.save-to-list-dropdown button"
-                        ).click({ force: true });
-
-                        cy.waitUntil(
-                          () =>
-                            cy.contains("Create account list", {
-                              timeout: 10000
-                            }),
-                          {
-                            errorMsg: "This is a custom error message", // overrides the default error message
-                            timeout: 10000, // waits up to 2000 ms, default to 5000
-                            interval: 500 // performs the check every 500 ms, default to 200
-                          }
+                        ).length === 0
+                      ) {
+                        console.log(
+                          "Detected in others lists " +
+                            company["Organization Name"]
                         );
 
-                        const dropContainerSelector =
-                          "div.company-topcard-actions div.save-to-list-dropdown__content-container";
+                        // click at [1] Lists
+                        cy.get(
+                          // ".actions-container .lists-indicator__topcard"
+                          ".right div.company-topcard-actions div.artdeco-dropdown button"
+                        ).click({ force: true });
+
+                        cy.contains("Add to another list", {
+                          timeout: 2000
+                        }).click();
+
+                        cy.get(".entity-lists-ta__ta-container input").type(
+                          listName
+                        );
+
+                        // cy.get("#results").should("be.visible");
 
                         cy.get("body").then($body => {
-                          var $listContainer = $body.find(
-                            dropContainerSelector + " ul"
-                          );
-                          // console.log($listContainer);
-                          //   console.log('TEXT:', $listContainer.text());
-                          if ($listContainer.text().includes(listName)) {
-                            cy.get(dropContainerSelector).contains("maximum");
-                            cy.get(dropContainerSelector)
-                              .scrollIntoView()
-                              .contains(listName, { timeout: 10000 })
-                              .parent()
-                              .click();
-
-                            cy.contains("was saved successfully", {
-                              timeout: 10000
-                            }).should("be.visible");
-                            saveToState();
-                          } else {
-                            cy.get(dropContainerSelector)
-                              .contains("Create account list", {
-                                timeout: 10000
-                              })
-                              .click();
-                            cy.wait(300);
-                            cy.get(
-                              "input[placeholder='E.g. Q4 Accounts']"
-                            ).type(listName);
-                            cy.contains("Create and save").click();
-                            cy.get(".button-secondary-large-muted").should(
-                              "contain",
-                              "Saved"
+                          if (
+                            $body.find(
+                              ".artdeco-modal-overlay ul.entity-lists-ta__unselected-menu li"
+                            ).length == 0
+                          ) {
+                            console.log(
+                              "Already saved in "+ listName + ". Skiping " +
+                                company["Organization Name"]
                             );
-                            saveToState();
+                          } else {
+                            cy.get(
+                              ".artdeco-modal-overlay ul.entity-lists-ta__unselected-menu"
+                            )
+                              .contains(listName)
+                              .click({ force: true });
+
+                            cy.get(
+                              ".artdeco-modal-overlay .edit-entity-lists-modal__save-btn"
+                            ).click();
                           }
                         });
+
+                        // cy.contains("successfully updated", {
+                        //   timeout: 10000
+                        // }).should("be.visible");
+                        saveToState();
+                        return;
+                      }
+
+                      // artdeco-dropdown__content-inner
+                      cy.get(
+                        ".right div.company-topcard-actions div.save-to-list-dropdown"
+                      ).click({ force: true });
+                      cy.get(
+                        ".right div.company-topcard-actions div.save-to-list-dropdown button"
+                      ).click({ force: true });
+
+                      cy.waitUntil(
+                        () =>
+                          cy.contains("Create account list", {
+                            timeout: 10000
+                          }),
+                        {
+                          errorMsg: "This is a custom error message", // overrides the default error message
+                          timeout: 10000, // waits up to 2000 ms, default to 5000
+                          interval: 500 // performs the check every 500 ms, default to 200
+                        }
+                      );
+
+                      const dropContainerSelector =
+                        "div.company-topcard-actions div.save-to-list-dropdown__content-container";
+
+                      cy.get("body").then($body => {
+                        var $listContainer = $body.find(
+                          dropContainerSelector + " ul"
+                        );
+                        // console.log($listContainer);
+                        //   console.log('TEXT:', $listContainer.text());
+                        if ($listContainer.text().includes(listName)) {
+                          cy.get(dropContainerSelector).contains("maximum");
+                          cy.get(dropContainerSelector)
+                            .scrollIntoView()
+                            .contains(listName, { timeout: 10000 })
+                            .parent()
+                            .click();
+
+                          cy.contains("was saved successfully", {
+                            timeout: 10000
+                          }).should("be.visible");
+                          saveToState();
+                        } else {
+                          cy.get(dropContainerSelector)
+                            .contains("Create account list", {
+                              timeout: 10000
+                            })
+                            .click();
+                          cy.wait(300);
+                          cy.get("input[placeholder='E.g. Q4 Accounts']").type(
+                            listName
+                          );
+                          cy.contains("Create and save").click();
+                          cy.get(".button-secondary-large-muted").should(
+                            "contain",
+                            "Saved"
+                          );
+                          saveToState();
+                        }
                       });
+                    });
                   });
               });
           });
