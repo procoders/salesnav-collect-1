@@ -72,6 +72,11 @@ Since you wnat to see how script works in a realtime browser than use
 npm run cypress:open -- --env  .....
 ```
 
+### How to drop list progress and start from scratch
+
+In `cypress/state` subfolder you will see files according to your LinkedIn lists names. Since deliting it you purge the state and list collecting will be started from scratch
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
