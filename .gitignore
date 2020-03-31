@@ -116,5 +116,7 @@ dist
 
 .DS_Store
 
-fixture
+cypress/fixtures/crunchbase-lists
+cypress/fixtures/contacts
+
 cypress/state
