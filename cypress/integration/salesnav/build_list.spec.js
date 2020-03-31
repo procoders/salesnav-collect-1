@@ -137,7 +137,9 @@ describe("Build filter links", function() {
                             ).length == 0
                           ) {
                             console.log(
-                              "Already saved in "+ listName + ". Skiping " +
+                              "Already saved in " +
+                                listName +
+                                ". Skiping " +
                                 company["Organization Name"]
                             );
                           } else {
@@ -151,12 +153,12 @@ describe("Build filter links", function() {
                               ".artdeco-modal-overlay .edit-entity-lists-modal__save-btn"
                             ).click();
                           }
+                          saveToState();
                         });
 
                         // cy.contains("successfully updated", {
                         //   timeout: 10000
                         // }).should("be.visible");
-                        saveToState();
                         return;
                       }
 
