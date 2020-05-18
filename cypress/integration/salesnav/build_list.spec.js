@@ -70,7 +70,8 @@ describe("Build filter links", function() {
 
                   return;
                 }
-                cy.get(".org-top-card-overflow").click();
+                cy.get(".org-top-card-overflow").click({ force: true });
+                // cy.wait(1000); // it simply does need it
 
                 cy.get("body")
                   .then($body =>
@@ -98,7 +99,7 @@ describe("Build filter links", function() {
 
                     cy.location("pathname", { timeout: 10000 }).should(
                       "include",
-                      "/sales"
+                      "/sales/company"
                     );
 
                     cy.get("body").then($body => {
@@ -119,6 +120,7 @@ describe("Build filter links", function() {
                           // ".actions-container .lists-indicator__topcard"
                           ".right div.company-topcard-actions div.artdeco-dropdown button"
                         ).click({ force: true });
+                        //.contains('Save')
 
                         cy.contains("Add to another list", {
                           timeout: 2000
