@@ -70,7 +70,7 @@ describe("Build filter links", function() {
 
                   return;
                 }
-                cy.get(".org-overflow-menu__trigger-icon > svg").click({ force: true });
+                cy.get(".org-overflow-menu__trigger-icon > svg:first").click({ force: true });
                 // cy.get(".org-top-card-overflow").click({ force: true });
                 // cy.get("body")
                 //   .then($body =>
