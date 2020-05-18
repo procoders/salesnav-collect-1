@@ -70,25 +70,23 @@ describe("Build filter links", function() {
 
                   return;
                 }
-                cy.get(".org-top-card-overflow").click({ force: true });
-                // cy.wait(1000); // it simply does need it
-
-                cy.get("body")
-                  .then($body =>
-                    $body.find(
-                      '.org-top-card-overflow [data-control-name="topcard_view_in_sales_navigator"]'
-                    )
-                  )
-                  .then($el => {
-                    // console.log($el);
-                    if ($el.length === 0) {
-                      console.log(
-                        "No link to SalesNav. Cannot save " +
-                          company["Organization Name"]
-                      );
-                      saveToState();
-                      return;
-                    }
+                cy.get(".org-overflow-menu__trigger-icon > svg").click({ force: true });
+                // cy.get(".org-top-card-overflow").click({ force: true });
+                // cy.get("body")
+                //   .then($body =>
+                //     $body.find(
+                //       '.org-top-card-overflow [data-control-name="topcard_view_in_sales_navigator"]'
+                //     )
+                //   )
+                //   .then($el => {
+                //     if ($el.length === 0) {
+                //       console.log(
+                //         "No link to SalesNav. Cannot save " +
+                //           company["Organization Name"]
+                //       );
+                //       saveToState();
+                //       return;
+                //     }
 
                     cy.get(
                       ".org-top-card-overflow .artdeco-dropdown__content-inner ul"
@@ -224,7 +222,6 @@ describe("Build filter links", function() {
                         }
                       });
                     });
-                  });
               });
           });
         });
