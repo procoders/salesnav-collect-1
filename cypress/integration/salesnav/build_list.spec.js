@@ -122,7 +122,7 @@ describe("Build filter links", function() {
 
                         // cy.contains("Add to another list", {
 
-                        cy.contains("Add to list", {
+                        cy.contains(/(Add to list)|(Add to another list)/gi, {
                           timeout: 2000
                         }).click();
 
