@@ -120,7 +120,9 @@ describe("Build filter links", function() {
                         ).click({ force: true });
                         //.contains('Save')
 
-                        cy.contains("Add to another list", {
+                        // cy.contains("Add to another list", {
+
+                        cy.contains("Add to list", {
                           timeout: 2000
                         }).click();
 
