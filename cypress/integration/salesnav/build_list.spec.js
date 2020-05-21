@@ -70,23 +70,32 @@ describe("Build filter links", function() {
 
                   return;
                 }
-                cy.get(".org-overflow-menu__trigger-icon > svg:first").click({ force: true });
+                // cy.wait(2000);
+                // cy.get('section.org-top-card').click({ force: true });
+                // cy.get('.org-top-card-overflow li-icon').scrollIntoView()
+                // cy.get('.org-top-card-overflow li-icon').click();
+                cy.get(".org-top-card-overflow").click();
+                // cy.get('.org-top-card-overflow li-icon').click({ force: true });
+
+                // cy.get(".org-overflow-menu__content").should(
+                //   "contain",
+                //   "Share page"
+                // );
                 // cy.get(".org-top-card-overflow").click({ force: true });
-                // cy.get("body")
-                //   .then($body =>
-                //     $body.find(
-                //       '.org-top-card-overflow [data-control-name="topcard_view_in_sales_navigator"]'
-                //     )
-                //   )
-                //   .then($el => {
-                //     if ($el.length === 0) {
-                //       console.log(
-                //         "No link to SalesNav. Cannot save " +
-                //           company["Organization Name"]
-                //       );
-                //       saveToState();
-                //       return;
-                //     }
+                cy.get("body")
+                  .then($body =>  $body.find(
+                      '.org-top-card-overflow [data-control-name="topcard_view_in_sales_navigator"]'
+                    )
+                  )
+                  .then($el => {
+                    if ($el.length === 0) {
+                      console.log(
+                        "No link to SalesNav. Cannot save " +
+                          company["Organization Name"]
+                      );
+                      saveToState();
+                      return;
+                    }
 
                     cy.get(
                       ".org-top-card-overflow .artdeco-dropdown__content-inner ul"
@@ -225,6 +234,7 @@ describe("Build filter links", function() {
                       });
                     });
               });
+            });
           });
         });
       }
