@@ -84,7 +84,7 @@ describe("Build filter links", function() {
                 // cy.get(".org-top-card-overflow").click({ force: true });
                 cy.get("body")
                   .then($body =>  $body.find(
-                      '.org-top-card-overflow [data-control-name="topcard_view_in_sales_navigator"]'
+                      '[data-control-name="topcard_view_in_sales_navigator"]'
                     )
                   )
                   .then($el => {
