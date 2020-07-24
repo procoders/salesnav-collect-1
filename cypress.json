@@ -1,6 +1,6 @@
 {
-    "viewportWidth": 1600,
-    "viewportHeight": 1040,
+    "viewportWidth": 1200,
+    "viewportHeight": 800,
     "env": {
         "RETRIES": 120
     },

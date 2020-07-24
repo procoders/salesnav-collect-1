@@ -74,9 +74,9 @@ describe("Build filter links", function() {
                 // cy.get('section.org-top-card').click({ force: true });
                 // cy.get('.org-top-card-overflow li-icon').scrollIntoView()
                 // cy.get('.org-top-card-overflow li-icon').click();
-                cy.get(".org-top-card-overflow").click();
+                cy.get(".org-top-card-overflow .org-overflow-menu__dropdown-trigger").click();
                 // cy.get('.org-top-card-overflow li-icon').click({ force: true });
-
+                cy.wait(2000);
                 // cy.get(".org-overflow-menu__content").should(
                 //   "contain",
                 //   "Share page"
@@ -92,7 +92,7 @@ describe("Build filter links", function() {
                       console.log(
                         "No link to SalesNav. Cannot save " +
                           company["Organization Name"]
-                      );
+                      );  
                       saveToState();
                       return;
                     }
@@ -102,7 +102,7 @@ describe("Build filter links", function() {
                     )
                       .contains("View in Sales Navigator")
                       .invoke("removeAttr", "target")
-                      .click({ force: true });
+                      .click();
 
                     cy.location("pathname", { timeout: 10000 }).should(
                       "include",
